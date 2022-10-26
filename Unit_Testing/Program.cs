@@ -1,14 +1,37 @@
 ﻿namespace Unit_Testing
 {
+    using Serilog;
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Enter a Number : ");
-            int Number = Convert.ToInt16(Console.ReadLine());
-            double SqrtNumber = Math.Sqrt(Number);
-            Console.WriteLine("Square root of {0} is: {1}", Number, SqrtNumber);
-            
+            Console.WriteLine("enter amount : ");
+            int amount = Convert.ToInt32(Console.ReadLine());
+            RupeesNotes(amount);
+        }
+
+        public static void RupeesNotes(int amount)
+        {
+            int[] currency = new int[] { 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1 };
+            int[] currencyCounter = new int[10];
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (amount >= currency[i])
+                {
+                    currencyCounter[i] = amount / currency[i];
+                    amount = amount % currency[i];
+                }
+            }
+
+            Console.WriteLine("Currency Count: ");
+            for (int i = 0; i < 10; i++)
+            {
+                if (currencyCounter[i] != 0)
+                {
+                    Console.WriteLine(currency[i] + " : " + currencyCounter[i]);
+                }
+            }
         }
     }
 }
