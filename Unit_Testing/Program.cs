@@ -1,37 +1,32 @@
 ﻿namespace Unit_Testing
 {
-    using Serilog;
-    internal class Program
+    public class Program
     {
-        public static void Main()
+        static void Main(string[] args)
         {
-            Console.WriteLine("enter amount : ");
-            int amount = Convert.ToInt32(Console.ReadLine());
-            RupeesNotes(amount);
-        }
-
-        public static void RupeesNotes(int amount)
-        {
-            int[] currency = new int[] { 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1 };
-            int[] currencyCounter = new int[10];
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (amount >= currency[i])
-                {
-                    currencyCounter[i] = amount / currency[i];
-                    amount = amount % currency[i];
-                }
-            }
-
-            Console.WriteLine("Currency Count: ");
-            for (int i = 0; i < 10; i++)
-            {
-                if (currencyCounter[i] != 0)
-                {
-                    Console.WriteLine(currency[i] + " : " + currencyCounter[i]);
-                }
-            }
+            MonthlyPayment month = new MonthlyPayment();
+            month.Payment();
         }
     }
+    public class MonthlyPayment
+    {
+        public void Payment()
+        {
+            Console.WriteLine("Enter the Principal : ");
+            double principal = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter the Year : ");
+            double year = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter the Rate : ");
+            double rate = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Monthly Payment is " + monthlyPayment(principal, year, rate));
+        }
+        public static double monthlyPayment(double p, double y, double r)
+        {
+            double n = 12 * y;
+            double rpp = r / (12 * 100);
+            double payment = p * rpp / (1 - Math.Pow((1 + rpp), -n));
+            return payment;
+        }
+    }
+
 }
