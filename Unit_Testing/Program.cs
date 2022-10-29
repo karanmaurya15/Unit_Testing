@@ -4,29 +4,17 @@
     {
         static void Main(string[] args)
         {
-            MonthlyPayment month = new MonthlyPayment();
-            month.Payment();
-        }
-    }
-    public class MonthlyPayment
-    {
-        public void Payment()
-        {
-            Console.WriteLine("Enter the Principal : ");
-            double principal = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter the Year : ");
-            double year = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter the Rate : ");
-            double rate = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Monthly Payment is " + monthlyPayment(principal, year, rate));
-        }
-        public static double monthlyPayment(double p, double y, double r)
-        {
-            double n = 12 * y;
-            double rpp = r / (12 * 100);
-            double payment = p * rpp / (1 - Math.Pow((1 + rpp), -n));
-            return payment;
-        }
-    }
+            Console.Write("Enter the Decimal Number : ");
+            int number = int.Parse(Console.ReadLine());
 
+            string Result = string.Empty;
+            for (int i = 0; number > 0; i++)
+            {
+                Result = number % 2 + Result;
+                number = number / 2;
+            }
+            Console.WriteLine($"Binary Represenation of the given Number : {Result}");
+
+        }
+    }
 }
