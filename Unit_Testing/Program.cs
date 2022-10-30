@@ -2,19 +2,25 @@
 {
     public class Program
     {
-        static void Main(string[] args)
-        {
-            Console.Write("Enter the Decimal Number : ");
-            int number = int.Parse(Console.ReadLine());
+  
+         // Function for swapping    
+         static int swapNibbles(int x)
+         {
+                return ((x & 0x0F) << 4 |
+                        (x & 0xF0) >> 4);
+         }
 
-            string Result = string.Empty;
-            for (int i = 0; number > 0; i++)
-            {
-                Result = number % 2 + Result;
-                number = number / 2;
-            }
-            Console.WriteLine($"Binary Represenation of the given Number : {Result}");
+         // Driver code
+         static void Main(string[] args)
+         {
+            Console.WriteLine("Enter any value");
+                int x = Convert.ToInt32(Console.ReadLine());
+                Console.Write(swapNibbles(x));
 
-        }
+         }
+ 
+
     }
 }
+    
+
